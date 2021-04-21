@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text-center">Phase List</h1>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Libelle Phase</th>
+            <th class="text-center">Nombre Des Points</th>
+            <th class="text-center">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let phase of phases">
+            <td>{{ phase.id }}</td>
+            <td>{{ phase.phaseName }}</td>
+            <td>{{ phase.point }}</td>
+
+            <td>
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditPhaseForm(phase)">Edit</button>
+
+              <button type="button" class="btn btn-danger btn-sm" (click)="removePhase(phase)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="showAddPhaseForm()">Add Nouveau Phase</button>
+
+      <div class="mt-4">
+        <form *ngIf="phaseForm">
+          <h2>Add Nouveau Phase</h2>
+          <p>Libelle Phase: <input type="text" name="phaseName" [(ngModel)]="newPhase.phaseName" /></p>
+          <p>Nombre Des Points: <input type="text" name="point" [(ngModel)]="newPhase.point" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="savePhase(newPhase)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewPhase()">Cancel</button>
+          </p>
+        </form>
+
+        <form *ngIf="editPhaseForm">
+          <h2>Edit  Phase</h2>
+          <p>Libelle Phase: <input type="text" name="phaseName" [(ngModel)]="editedPhase.firstName" /></p>
+          <p>Nombre Des Points: <input type="text" name="point" [(ngModel)]="editedPhase.lastName" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updatePhase()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

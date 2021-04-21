@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h1 class="text-center">Tournoi List</h1>
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Turnoi Nom</th>
+            <th class="text-center">Ville</th>
+            <th class="text-center">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of tournois">
+            <td>{{ user.id }}</td>
+            <td>{{ user.tournoiName }}</td>
+            <td>{{ user.city }}</td>
+
+            <td>
+              <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditTournoiForm(user)">Edit</button>
+
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeTournoi(user)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" (click)="showAddTournoiForm()">Add Nouveau Tournoi</button>
+
+      <div class="mt-4">
+        <form *ngIf="tournoiForm">
+          <h2>Add Nouveau Tournoi</h2>
+          <p>Nom Tournoi: <input type="text" name="tournoiName" [(ngModel)]="newTournoi.tournoiName" /></p>
+          <p>Ville: <input type="text" name="city" [(ngModel)]="newTournoi.city" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="saveTournoi(newTournoi)">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelNewTournoi()">Cancel</button>
+          </p>
+        </form>
+
+        <form *ngIf="editTournoiForm">
+          <h2>Edit Tournoi</h2>
+          <p>Nom Tournoi: <input type="text" name="tournoiName" [(ngModel)]="editedTournoi.tournoiName" /></p>
+          <p>Ville: <input type="text" name="city" [(ngModel)]="editedTournoi.city" /></p>
+          <p>
+            <button type="button" class="btn btn-primary mr-2" (click)="updateTournoi()">Submit</button>
+            <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
